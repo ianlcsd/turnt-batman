@@ -1,0 +1,50 @@
+hiveserver2:
+  host: localhost
+  db_name: csd_agent_tests
+  table_name: csd_agent_acceptance_test_table
+  properties:
+    user: hive
+    password: hive
+    ## customization for local hadoop
+    hive.server2.thrift.port : 10003
+    hive.server2.enable.doAs : false
+    mapred.job.tracker : local
+    mapreduce.framework.name : local
+    mapreduce.job.reduces : 1
+    hive.exec.mode.local.auto : false
+    ## Set the hsqldb driver
+    datanucleus.connectiondrivername : org.hsqldb.jdbc.JDBCDriver
+    javax.jdo.option.ConnectionDriverName : org.hsqldb.jdbc.JDBCDriver
+    ## No pooling needed. This will save us a lot of threads
+    hive.stats.autogather : false
+    datanucleus.connectionPoolingType : None
+    ## Defaults to a 1000 millis sleep in org.apache.hadoop.hive.ql.exec.mr.HadoopJobExecHelper.
+    hive.exec.counters.pull.interval : 1
+    hadoop.bin.path : NO_BIN
+    ## configureSupportConcurrency
+    hive.support.concurrency : false
+    ## configureFileSystem
+    javax.jdo.option.ConnectionURL: jdbc:hsqldb:mem:hivehsqldb;create=true
+    hive.warehouse.subdir.inherit.perms : true
+    ## directories
+    hive.metastore.warehouse.dir : /tmp/hiveserver2/warehouse
+    hive.start.cleanup.scratchdir : /tmp/hiveserver2/scratchdir
+    hive.exec.local.scratchdir : /tmp/hiveserver2/localscratchdir
+    hive.querylog.location : /tmp/hiveserver2/tmp
+    hadoop.tmp.dir : /tmp/hiveserver2/hadooptmp
+    test.log.dir : /tmp/hiveserver2/logs
+    hive.vs : /tmp/hiveserver2/vs
+    ## configureMetaStoreValidation
+    datanucleus.validateConstraints : true
+    datanucleus.validateColumns : true
+    datanucleus.validateTables : true
+    ## configureMapReduceOptimizations
+    hive.exec.infer.bucket.sort : false
+    hive.optimize.metadataonly : false
+    hive.optimize.index.filter : false
+    hive.auto.convert.join : false
+    hive.optimize.skewjoin : false
+    ## configureCheckForDefaultDb
+    hive.metastore.checkForDefaultDb : true
+
+    
